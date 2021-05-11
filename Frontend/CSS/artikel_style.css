@@ -1,20 +1,25 @@
+* {
+    box-sizing: border-box
+}
 
-* {box-sizing: border-box}
-body {margin:0; background-color:#444048}
+body {
+    margin: 0;
+    background-color: #444048
+}
 
 #titel a {
     text-decoration: none;
     color: white;
 }
 
-.kurzbeschr_box{
-	margin-right:10%;
-	font-size:1.2em;
+.kurzbeschr_box {
+    margin-right: 10%;
+    font-size: 1.2em;
 }
 
-@font-face{
+@font-face {
     font-family: X-Files;
-    src: url(x-files.tff);
+    src: url(../sources/x-files.ttf);
 }
 
 .navElemente {
@@ -22,8 +27,8 @@ body {margin:0; background-color:#444048}
     padding: 0;
 }
 
-#title_font{
-	margin: 0;
+#title_font {
+    margin: 0;
     padding: 0;
 }
 
@@ -85,80 +90,80 @@ body {margin:0; background-color:#444048}
 
 
 #footer {
-	
-	display:inline-block;
+
+    display: inline-block;
     background-color: #444048;
     width: 100%;
-	min-height:100px;
-    height: 10%;   
+    min-height: 100px;
+    height: 10%;
 }
 
 
-#top_container{
-	height:auto;
+#top_container {
+    height: auto;
 }
 
-.biographie_buble{
-	margin-right:10%;
-	margin-bottom:10%;
-	background-color: #444048;
-	height:auto;
-	width: 69%;
-	border-radius:30px;
-	padding-left:2%;
-	margin-top: 10%;
-	display:inline-block;
+.biographie_buble {
+    margin-right: 10%;
+    margin-bottom: 10%;
+    background-color: #444048;
+    height: auto;
+    width: 69%;
+    border-radius: 30px;
+    padding-left: 2%;
+    margin-top: 10%;
+    display: inline-block;
 }
 
-.biographie_buble a{
-	text-decoration:none;
-	color:white;
+.biographie_buble a {
+    text-decoration: none;
+    color: white;
 }
 
 
 
-.author_image{
-	margin-bottom:10%;
-	float:left;
-	margin-top: 10%;
-	height:100%;
+.author_image {
+    margin-bottom: 10%;
+    float: left;
+    margin-top: 10%;
+    height: 100%;
     width: 19%;
     margin-left: 1%;
-	margin-right:1%;
+    margin-right: 1%;
 }
 
-#kurzbeschr_headline{
-	margin-top:5%;
-	font-size:1.6em;
-	font-weight:bold;
+#kurzbeschr_headline {
+    margin-top: 5%;
+    font-size: 1.6em;
+    font-weight: bold;
 }
 
-#back_button{
-	float:left;
-	background-color:#8A9094;
-	color:white;
+#back_button {
+    float: left;
+    background-color: #8A9094;
+    color: white;
 }
 
-#cart_button{
-	background-color:#FF8A11;
-	color:white;
-	float:right;
-	margin-right:10%;
+#cart_button {
+    background-color: #FF8A11;
+    color: white;
+    float: right;
+    margin-right: 10%;
 }
 
-.buttons{
-	margin-top:10%;
-	margin-bottom:10%;
-	border:0px;
-	border-radius:100px;
-	width:15%;
-	min-width:180px;
-	height:60px;
-	font-size:1.3em;
+.buttons {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    border: 0px;
+    border-radius: 100px;
+    width: 15%;
+    min-width: 180px;
+    height: 60px;
+    font-size: 1.3em;
 }
 
-.buttons:hover{
-	cursor:pointer;
+.buttons:hover {
+    cursor: pointer;
 }
 
 
@@ -184,7 +189,7 @@ body {margin:0; background-color:#444048}
     position: relative;
     margin-left: 96%;
     bottom: 19%;
-    margin-right:2%;
+    margin-right: 2%;
     width: 38px;
     height: 40px;
 }
@@ -195,12 +200,12 @@ body {margin:0; background-color:#444048}
 
 /* Body  Box */
 .author_body_container {
-	background-color:#8A9094;
-	width:100%;
-	height:100%;
-	padding-left: 4%;
-	color:white;
-	padding-top: 0.5%;
+    background-color: #8A9094;
+    width: 100%;
+    height: 100%;
+    padding-left: 4%;
+    color: white;
+    padding-top: 0.5%;
 }
 
 
@@ -210,68 +215,68 @@ body {margin:0; background-color:#444048}
 
 
 
-img{
-	border-radius: 30px;
-	width: 100%;
+img {
+    border-radius: 30px;
+    width: 100%;
 }
 
 
-.price_tag{
-	color:#FF8A11;
-	font-size:1.8em;
-	float:right;
-	margin-right:2%;
+.price_tag {
+    color: #FF8A11;
+    font-size: 1.8em;
+    float: right;
+    margin-right: 2%;
 }
 
-.book_attributes_tag{
-	float:left;
-	padding-right:4%;
-	width:auto;
-	font-size:1.6em;
-	font-weight:bold;
+.book_attributes_tag {
+    float: left;
+    padding-right: 4%;
+    width: auto;
+    font-size: 1.6em;
+    font-weight: bold;
 }
 
 
-.book_attributes{
-	display:inline-block;
-	padding-right:4%;
-	width:auto;
-	font-size:1.6em;
+.book_attributes {
+    display: inline-block;
+    padding-right: 4%;
+    width: auto;
+    font-size: 1.6em;
 
 }
 
 /* Star rating */
 
 .checked_star {
-  color: orange;
+    color: orange;
 }
 
 
-.Kurzbeschreibung{
-	font-weight:bold;
-	
+.Kurzbeschreibung {
+    font-weight: bold;
+
 }
 
 
 
 
 .alert {
-  padding: 20px;
-  background-color: #f44336;
-  color: white;
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
 }
 
 .closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .closebtn:hover {
-  color: black;
+    color: black;
 }
