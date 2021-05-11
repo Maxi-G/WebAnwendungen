@@ -67,8 +67,8 @@
     padding: 2%;
 }
 
-.checked_star {   
-    color: orange; 
+.checked_star {
+    color: orange;
 }
 
 #second div.stars {
@@ -120,7 +120,7 @@
     border: none;
     border-radius: 79px;
     width: 15%;
-    height: 30%;    
+    height: 30%;
     margin-left: 80%;
     margin-top: 8%;
 }

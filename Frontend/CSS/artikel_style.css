@@ -73,7 +73,7 @@ body {
 }
 
 #logo {
-    background: url(Logo.png);
+    background: url(../sources/Logo.png);
     background-size: contain;
     position: absolute;
     margin-left: 90%;
@@ -184,7 +184,7 @@ body {
 }
 
 #copyright {
-    background: url(Copyright.png);
+    background: url(../sources/Copyright.png);
     background-size: contain;
     position: relative;
     margin-left: 96%;
