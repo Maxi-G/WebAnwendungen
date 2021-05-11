@@ -2,30 +2,22 @@
 // workaround / bugfix for linux systems
 Object.fromEntries = l => l.reduce((a, [k,v]) => ({...a, [k]: v}), {})
 /////////////////
-
 const helper = require('./helper.js');
-const fileHelper = require('./fileHelper.js');
-helper.log('Starting server...');
-
-
 try {
+    const express = require('express');
+    const fileUpload = require('express-fileupload');
+    const cors = require('cors');
+    const morgan = require('morgan');
+    
+    helper.log('Starting server...');
+
     // connect database
     helper.log('Connect database...');
     const Database = require('better-sqlite3');
     const dbOptions = { verbose: console.log };
-    const dbFile = './Backend/db/datenbank.sqlite';
+    const dbFile = 'Backend/db/datenbank.sqlite';
     helper.log(dbFile);
     const dbConnection = new Database(dbFile, dbOptions);
-    
-
-    // create server
-    const HTTP_PORT = 8000;
-    const express = require('express');
-    const fileUpload = require('express-fileupload');
-    const cors = require('cors');
-    const bodyParser = require('body-parser');
-    const morgan = require('morgan');
-    const _ = require('lodash');
 
     helper.log('Creating and configuring Web Server...');
     const app = express();
@@ -41,8 +33,8 @@ try {
         }
     }));
     app.use(cors());
-    app.use(bodyParser.urlencoded({ extended: true}));
-    app.use(bodyParser.json());
+    app.use(express.urlencoded({ extended: true}));
+    app.use(express.json());
     app.use(function(request, response, next) {
         response.setHeader('Access-Control-Allow-Origin', '*'); 
         response.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -55,20 +47,20 @@ try {
     const TOPLEVELPATH = '/web2';
     helper.log('Binding enpoints, top level Path at ' + TOPLEVELPATH);
     
-    var serviceRouter = require('./routes/buch.js');
+    var serviceRouter = require('./Backend/routes/buch');
     app.use(TOPLEVELPATH, serviceRouter);
 
-    var serviceRouter = require('./routes/buchbild.js');
+    var serviceRouter = require('./Backend/routes/buchbild.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
 
-    serviceRouter = require('./routes/zahlungsart.js');
+    serviceRouter = require('./Backend/routes/zahlungsart.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
-    serviceRouter = require('./routes/bewertungen.js');
+    serviceRouter = require('./Backend/routes/bewertungen.js');
     app.use(TOPLEVELPATH, serviceRouter);
     
-    serviceRouter = require('./routes/user.js');
+    serviceRouter = require('./Backend/routes/user.js');
     app.use(TOPLEVELPATH, serviceRouter);
     
     //weitere endpoints   
@@ -76,40 +68,18 @@ try {
     //---------------------------------------------------------------------------------------//
 
 
-    serviceRouter = require('./routes/shop.js');
+    serviceRouter = require('./Backend/routes/shop.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
 
 
-    serviceRouter = require('./routes/autor.js');
+    serviceRouter = require('./Backend/routes/autor.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
 
-    serviceRouter = require('./routes/buchgenre.js');
+    serviceRouter = require('./Backend/routes/buchgenre.js');
     app.use(TOPLEVELPATH, serviceRouter);
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
     //---------------------------------------------------------------------------------------//
-
-
-    
 
     // send default error message if no matching endpoint found
     app.use(function (request, response) {
@@ -120,12 +90,7 @@ try {
 
     // starting the Web Server
     helper.log('\nBinding Port and starting Webserver...');
-    app.listen(HTTP_PORT, () => {
-        helper.log('Listening at localhost, port ' + HTTP_PORT);
-        helper.log('\n\n-----------------------------------------');
-        helper.log('exit / stop Server by pressing 2 x CTRL-C');
-        helper.log('-----------------------------------------\n\n');
-    });
+    module.exports = app;
 
 } catch (ex) {
     helper.logError(ex);
