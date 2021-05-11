@@ -46,39 +46,33 @@ try {
     // binding endpoints
     const TOPLEVELPATH = '/web2';
     helper.log('Binding enpoints, top level Path at ' + TOPLEVELPATH);
+
+    var homRouter = require('./Backend/routes/home');
+    app.use(TOPLEVELPATH, homRouter);
     
-    var serviceRouter = require('./Backend/routes/buch');
-    app.use(TOPLEVELPATH, serviceRouter);
+    var buchRouter = require('./Backend/routes/buch');
+    app.use(TOPLEVELPATH, buchRouter);
 
-    var serviceRouter = require('./Backend/routes/buchbild.js');
-    app.use(TOPLEVELPATH, serviceRouter);
+    var buchBildRouter = require('./Backend/routes/buchbild.js');
+    app.use(TOPLEVELPATH, buchBildRouter);
 
+    zahlungsartRouter = require('./Backend/routes/zahlungsart.js');
+    app.use(TOPLEVELPATH, zahlungsartRouter);
 
-    serviceRouter = require('./Backend/routes/zahlungsart.js');
-    app.use(TOPLEVELPATH, serviceRouter);
-
-    serviceRouter = require('./Backend/routes/bewertungen.js');
-    app.use(TOPLEVELPATH, serviceRouter);
+    bewertungenRouter = require('./Backend/routes/bewertungen.js');
+    app.use(TOPLEVELPATH, bewertungenRouter);
     
-    serviceRouter = require('./Backend/routes/user.js');
-    app.use(TOPLEVELPATH, serviceRouter);
-    
-    //weitere endpoints   
+    userRouter = require('./Backend/routes/user.js');
+    app.use(TOPLEVELPATH, userRouter);
 
-    //---------------------------------------------------------------------------------------//
+    shopRouter = require('./Backend/routes/shop.js');
+    app.use(TOPLEVELPATH, shopRouter);
 
+    autorRouter = require('./Backend/routes/autor.js');
+    app.use(TOPLEVELPATH, autorRouter);
 
-    serviceRouter = require('./Backend/routes/shop.js');
-    app.use(TOPLEVELPATH, serviceRouter);
-
-
-
-    serviceRouter = require('./Backend/routes/autor.js');
-    app.use(TOPLEVELPATH, serviceRouter);
-
-
-    serviceRouter = require('./Backend/routes/buchgenre.js');
-    app.use(TOPLEVELPATH, serviceRouter);
+    buchgenreRouter = require('./Backend/routes/buchgenre.js');
+    app.use(TOPLEVELPATH, buchgenreRouter);
     //---------------------------------------------------------------------------------------//
 
     // send default error message if no matching endpoint found
