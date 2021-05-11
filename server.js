@@ -3,8 +3,10 @@
 Object.fromEntries = l => l.reduce((a, [k,v]) => ({...a, [k]: v}), {})
 /////////////////
 const helper = require('./helper.js');
+const path = require('path');
+const express = require('express');
 try {
-    const express = require('express');
+    
     const fileUpload = require('express-fileupload');
     const cors = require('cors');
     const morgan = require('morgan');
@@ -32,16 +34,18 @@ try {
             fileSize: 2 * 1024 * 1024 * 1024        // limit to 2MB
         }
     }));
+    app.use(morgan('dev'));
     app.use(cors());
-    app.use(express.urlencoded({ extended: true}));
     app.use(express.json());
+    app.use(express.urlencoded({ extended: true}));
+    app.use(express.static(path.join(__dirname, 'Frontend')));
     app.use(function(request, response, next) {
         response.setHeader('Access-Control-Allow-Origin', '*'); 
         response.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
         response.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
         next();
     });
-    app.use(morgan('dev'));
+    
 
     // binding endpoints
     const TOPLEVELPATH = '/web2';
