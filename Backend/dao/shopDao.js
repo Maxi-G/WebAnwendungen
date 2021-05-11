@@ -1,5 +1,5 @@
 const { startsWith } = require('lodash');
-const helper = require('../helper.js');
+const helper = require('../../helper.js');
 
 class ShopDao {
     constructor(dbConnection) {

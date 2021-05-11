@@ -1,4 +1,4 @@
-const helper = require('../helper.js');
+const helper = require('../../helper.js');
 
 class BuchbildDao {
     constructor(dbConnection) {

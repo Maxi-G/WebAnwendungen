@@ -1,4 +1,4 @@
-const helper = require('../helper.js');
+const helper = require('../../helper.js');
 const AutorDao = require('../dao/autorDao.js');
 const express = require('express');
 var serviceRouter = express.Router();
