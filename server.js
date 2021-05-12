@@ -37,7 +37,7 @@ try {
     app.use(morgan('dev'));
     app.use(cors());
     app.use(express.json());
-    app.use(express.urlencoded({ extended: true}));
+    app.use(express.urlencoded({ extended: false}));
     app.use(express.static(path.join(__dirname, 'Frontend')));
     app.use(function(request, response, next) {
         response.setHeader('Access-Control-Allow-Origin', '*'); 
@@ -51,8 +51,8 @@ try {
     const TOPLEVELPATH = '/web2';
     helper.log('Binding enpoints, top level Path at ' + TOPLEVELPATH);
 
-    var homRouter = require('./Backend/routes/home');
-    app.use(TOPLEVELPATH, homRouter);
+    var homeRouter = require('./Backend/routes/home');
+    app.use('/', homeRouter);
     
     var buchRouter = require('./Backend/routes/buch');
     app.use(TOPLEVELPATH, buchRouter);
