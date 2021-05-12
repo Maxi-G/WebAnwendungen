@@ -21,8 +21,6 @@ class ShopDao {
         return helper.arrayObjectKeysToLower(result);
     }
 
-
-
     loadSuche(suchwort){
     
         console.log(suchwort);
@@ -35,11 +33,7 @@ class ShopDao {
             return [];
     
         return helper.arrayObjectKeysToLower(result);
-
-
     }
-
-
 
     loadPreis(preis){
     
@@ -53,12 +47,7 @@ class ShopDao {
             return [];
     
         return helper.arrayObjectKeysToLower(result);
-
-
     }
-
-
-
 
     loadRat(rat){
     
@@ -72,8 +61,6 @@ class ShopDao {
             return [];
     
         return helper.arrayObjectKeysToLower(result);
-
-
     }
 
 
@@ -88,38 +75,21 @@ class ShopDao {
 
         var finalrats = [];
         var finalkats = [];
-        
-
-        
-
 
         for(var i = 0; i<kats.length; i++){
-            
-
             if(kats[i].length == 2 ){
 
                 finalkats.push(parseInt(kats[i]));
-
                 console.log(parseInt(kats[i]));
-
-
             }
-
-
         }
 
-
-        
         for(var i = 0; i<rats.length; i++){
-
-
             if(rats[i].length == 1 ){
 
                 console.log(parseInt(rats[i]));
                 finalrats.push(parseInt(rats[i]));
-
             }
-
         }
         
         
@@ -128,18 +98,12 @@ class ShopDao {
         console.log(finalkats);
 
         for(var i = 0; i<finalkats.length; i++){
-
             sql += " GenreID = '" + finalkats[i] + "'";
-
+            
             if(i < finalkats.length - 1){
 
                 sql += " OR "
-
             }
-
-            
-
-
         }
 
         sql += ") AND ("
@@ -153,21 +117,12 @@ class ShopDao {
             if(i < finalrats.length - 1){
 
                 sql += " OR "
-
             }
-
-            
-
-
         }
 
         sql += ") AND (Preis <= " + parseFloat(preis) + ")";
 
-
-        
         console.log(sql);
-        
-       
 
         var statement = this._conn.prepare(sql);
         var result = statement.all();
@@ -177,28 +132,17 @@ class ShopDao {
     
         return helper.arrayObjectKeysToLower(result);
 
-
     }
-
-
-
-
-
-
 
     loadRat(para){
 
         console.log(para);
 
         var all = para.split("x");
-        
-        
         var rats = all[0].split("r");
         var preis = all[1];
-        
         var finalrats = [];
 
-        
         for(var i = 0; i<rats.length; i++){
 
 
@@ -206,11 +150,8 @@ class ShopDao {
 
                 console.log(parseInt(rats[i]));
                 finalrats.push(parseInt(rats[i]));
-
             }
-
         }
-        
         
         var sql= "SELECT * FROM BUCH WHERE (" ;
 
@@ -221,21 +162,12 @@ class ShopDao {
             if(i < finalrats.length - 1){
 
                 sql += " OR "
-
             }
-
-            
-
-
         }
 
         sql += ") AND (Preis <= " + parseFloat(preis) + ")"; 
 
-
-        
         console.log(sql);
-        
-       
 
         var statement = this._conn.prepare(sql);
         var result = statement.all();
@@ -244,20 +176,11 @@ class ShopDao {
             return [];
     
         return helper.arrayObjectKeysToLower(result);
-
-
     }
-
-
-
-
-
 
     loadKat(para){
 
-
         console.log(para);
-
 
         var all = para.split("x");
         console.log(all);
@@ -267,7 +190,6 @@ class ShopDao {
         
         var finalkats = [];
 
-        
         for(var i = 0; i<kats.length; i++){
 
 
@@ -275,11 +197,8 @@ class ShopDao {
 
                 console.log(parseInt(kats[i]));
                 finalkats.push(parseInt(kats[i]));
-
             }
-
         }
-        
         
         var sql= "SELECT * FROM BUCH WHERE (" ;
 
@@ -292,22 +211,13 @@ class ShopDao {
             if(i < finalkats.length - 1){
 
                 sql += " OR "
-
             }
-
-            
-
-
         }
 
         sql += ") AND (Preis <= " + parseFloat(preis) + ")"; 
-
-
         
         console.log(sql);
         
-       
-
         var statement = this._conn.prepare(sql);
         var result = statement.all();
 
@@ -315,25 +225,7 @@ class ShopDao {
             return [];
     
         return helper.arrayObjectKeysToLower(result);
-        
-
-        
-
-
-        
-
-
-        
     }
-
-
-    
-
-
-
-
-
 }
 
 module.exports = ShopDao;
-
