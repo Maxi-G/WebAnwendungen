@@ -124,15 +124,6 @@ body {
     height: 40px;
 }
 
-#filter_box {
-    font-size: 1.6em;
-    min-width: 100px;
-    background-color: #444048;
-    height: auto;
-    width: auto;
-    padding: 2%;
-    border-radius: 35px;
-}
 
 
 
@@ -154,11 +145,27 @@ body {
     color: white;
 }
 
+#filter_box {
+    font-size: 1.6em;
+    min-width: 204px;
+    min-height: 523px;
+    max-width: 260px;
+    background-color: #444048;
+    height: auto;
+    width: auto;
+    padding: 2%;
+    border-radius: 35px;
+
+}
 
 .Left_container {
+    min-width: 205px;
+    min-height: 524px;
+    max-width: 260px;
     float: left;
     height: 100%;
     width: 15%;
+    margin-bottom: 4%;
 }
 
 
@@ -262,6 +269,7 @@ button[type="submit"] {
     max-height: 400px;
     min-width: 500px;
     min-height: 380px;
+    max-width: 500px;
     float: left;
     background-color: #444048;
     height: 30%;
@@ -318,4 +326,40 @@ button[type="submit"] {
     color: #FF8A11;
     float: right;
     font-size: 2em;
+}
+
+#Space1 {
+    float: left;
+    margin-right: 4%;
+}
+
+#Space2 {
+    display: inline-block;
+    margin-right: 4%;
+}
+
+.plus {
+    margin-right: 5%;
+    float: right;
+}
+
+.minus {
+    float: left;
+    margin-right: 5%;
+}
+
+
+#NoResults {
+    color: #444048;
+    text-align: center;
+}
+
+
+.filter_buttons {
+    background-color: #FF8A11;
+    color: white;
+    border-radius: 35px;
+    border: none;
+    cursor: pointer;
+
 }
