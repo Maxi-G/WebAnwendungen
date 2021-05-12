@@ -2,15 +2,20 @@
 // workaround / bugfix for linux systems
 Object.fromEntries = l => l.reduce((a, [k,v]) => ({...a, [k]: v}), {})
 /////////////////
+
+const express = require('express');
+const path = require('path');
+const morgan = require('morgan');
 const helper = require('./helper.js');
 const fileHelper = require('./fileHelper.js');
-const path = require('path');
-const express = require('express');
+const fileUpload = require('express-fileupload');
+const cors = require('cors');
+
 try {
     
-    const fileUpload = require('express-fileupload');
-    const cors = require('cors');
-    const morgan = require('morgan');
+    var indexRouter = require('./routes/index');
+
+    const app = express();
     
     helper.log('Starting server...');
 
@@ -23,7 +28,7 @@ try {
     const dbConnection = new Database(dbFile, dbOptions);
 
     helper.log('Creating and configuring Web Server...');
-    const app = express();
+    
     
     // provide service router with database connection / store the database connection in global server environment
     app.locals.dbConnection = dbConnection;
@@ -36,10 +41,10 @@ try {
         }
     }));
     app.use(morgan('dev'));
-    app.use(cors());
     app.use(express.json());
     app.use(express.urlencoded({ extended: false}));
-    app.use(express.static(path.join(__dirname, 'Frontend')));
+    app.use(cors());    
+    app.use(express.static(path.join(__dirname, 'public')));
     app.use(function(request, response, next) {
         response.setHeader('Access-Control-Allow-Origin', '*'); 
         response.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -52,8 +57,8 @@ try {
     const TOPLEVELPATH = '/web2';
     helper.log('Binding enpoints, top level Path at ' + TOPLEVELPATH);
 
-    var homeRouter = require('./routes/home');
-    app.use('/', homeRouter);
+    
+    app.use('/', indexRouter);
     
     var buchRouter = require('./routes/buch');
     app.use(TOPLEVELPATH, buchRouter);
