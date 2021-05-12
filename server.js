@@ -18,7 +18,7 @@ try {
     helper.log('Connect database...');
     const Database = require('better-sqlite3');
     const dbOptions = { verbose: console.log };
-    const dbFile = 'Backend/db/datenbank.sqlite';
+    const dbFile = './db/datenbank.sqlite';
     helper.log(dbFile);
     const dbConnection = new Database(dbFile, dbOptions);
 
@@ -52,31 +52,31 @@ try {
     const TOPLEVELPATH = '/web2';
     helper.log('Binding enpoints, top level Path at ' + TOPLEVELPATH);
 
-    var homeRouter = require('./Backend/routes/home');
+    var homeRouter = require('./routes/home');
     app.use('/', homeRouter);
     
-    var buchRouter = require('./Backend/routes/buch');
+    var buchRouter = require('./routes/buch');
     app.use(TOPLEVELPATH, buchRouter);
 
-    var buchBildRouter = require('./Backend/routes/buchbild.js');
+    var buchBildRouter = require('./routes/buchbild.js');
     app.use(TOPLEVELPATH, buchBildRouter);
 
-    zahlungsartRouter = require('./Backend/routes/zahlungsart.js');
+    zahlungsartRouter = require('./routes/zahlungsart.js');
     app.use(TOPLEVELPATH, zahlungsartRouter);
 
-    bewertungenRouter = require('./Backend/routes/bewertungen.js');
+    bewertungenRouter = require('./routes/bewertungen.js');
     app.use(TOPLEVELPATH, bewertungenRouter);
     
-    userRouter = require('./Backend/routes/user.js');
+    userRouter = require('./routes/user.js');
     app.use(TOPLEVELPATH, userRouter);
 
-    shopRouter = require('./Backend/routes/shop.js');
+    shopRouter = require('./routes/shop.js');
     app.use(TOPLEVELPATH, shopRouter);
 
-    autorRouter = require('./Backend/routes/autor.js');
+    autorRouter = require('./routes/autor.js');
     app.use(TOPLEVELPATH, autorRouter);
 
-    buchgenreRouter = require('./Backend/routes/buchgenre.js');
+    buchgenreRouter = require('./routes/buchgenre.js');
     app.use(TOPLEVELPATH, buchgenreRouter);
     //---------------------------------------------------------------------------------------//
 
