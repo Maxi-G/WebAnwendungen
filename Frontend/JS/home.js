@@ -5,30 +5,6 @@ var right_slide;
 var slides;
 var slider_images;
 
-/*$(async () => {
-    // When the "reloadEntries" button is clicked, fetch the guestbook entries
-    $("#img1").click(async () => await loadBuchBild());
-
-    $('#createEntryButton').click(async () => await createNewGuestbookEntry());
-
-    // when the page is done loading, fetch the guestbook entries
-    await loadBuchBild();
-});
-
-async function loadBuchBild() {
-    let entries = undefined;
-    try {
-        const response = await fetch("/api/v1/entries");
-        entries = await response.json();
-    }
-    catch(exception) {
-        showError("Failed to fetch guestbook entries", exception);
-        return;
-    };
-
-    renderGuestbookEntries(entries);
-}*/
-
 onload = (event) =>{   // wird aufgerufen sobald Webseite geladen wird
     slides = document.getElementsByClassName("mySlides");
     slider_images = document.getElementsByClassName("slider_img");
@@ -50,6 +26,8 @@ function plusSlides(n) {
 
 
 function showSlides(n0,n1,n2) {
+  
+	
 
 	for (let i = 0; i < slides.length; i++) {
 		slides[i].style.display = "none";       /* Alle Slides werden "deaktiviert" */
@@ -84,6 +62,8 @@ function showSlides(n0,n1,n2) {
 	slides[mid_slide].style.borderColor = "yellow";
 	slides[left_slide].style.borderColor = "";
 	slides[right_slide].style.borderColor = "";
+
+
 	
 	slides[left_slide].style.display = "inline-block";     /* left Slide wird eingeblendet. */
 	slides[left_slide].style.left = "2%"; 
@@ -101,7 +81,16 @@ function showSlides(n0,n1,n2) {
 	slides[right_slide].style.left = "59%";
 	
 	slides[right_slide].style.width = "230px";
-	slides[right_slide].style.height = "500px";	
+	slides[right_slide].style.height = "500px";
+	
+	
+	
+	
+	
+
+	
+	
+		
 }
 
 /*
