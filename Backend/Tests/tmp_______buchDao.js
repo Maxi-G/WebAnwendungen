@@ -1,38 +1,34 @@
+
 const Database = require('better-sqlite3');
 const path = require("path");
 const dbOptions = { verbose: console.log };
 const dbFile = path.join(__dirname, "../db/datenbank.sqlite");     
 const dbConnection = new Database(dbFile, dbOptions);
 
-const ShopDao  = require('../dao/shopDao');
-const shopDao = new ShopDao(dbConnection);
+const BuchDao  = require('../dao/buchdao');
+const buchdao = new BuchDao(dbConnection);
 
 
-test('ShopDao alle Bücher laden' , () => {
-    let result = shopDao.loadAll();
-    expect(result).toBeDefined();
-    expect(CheckBuchAttribute(result)).toBeTruthy();
-});
+test('BuchDao Buch über ID laden' , () => {
+    let valid_IDs = buchdao.JEST_load_all_idS();
 
-
-test('ShopDao Buch Suche' , () => {
-    const suchworte=["halloWelt", "Buch", "suchwort",  "Nix", "Sandmann", "Test", " d3!jd87", "fdsui(DHGGHSHG", "hjsF8dn,2iD18A1"];  
-    for(let i=0; i<suchworte;i++){
-        let result = shopDao.loadSuche(suchworte[i]);
+    expect(valid_IDs).toBeDefined();
+    expect(valid_IDs.length).toBeGreaterThanOrEqual(1); // Mindestens eine ID sollte gefunden werden!
+   
+    for(let i=0; i<valid_IDs.length;i++){
+        let result = buchdao.loadById(valid_IDs[i]);
         expect(result).toBeDefined();
         expect(CheckBuchAttribute(result)).toBeTruthy();
     }
+    
+    
+    
 });
 
 
-
-test('ShopDao Preis des teuersten Artikels' , () => {
-    let result = shopDao.loadmaxPreis();
-    expect(result).toBeDefined();
-    expect
-});
-
-
+// hier kann man noch Bestseller machen --> der hat mehr zum testen wie z.b Dass es immer genau 3 Bücher sein müssen!
+// In den anderen Tests sollte da false raus kommen wenn DB leer?????
+// Datenbank Regel!  --> Es muss immer mindestens 1 Buch und ein Autor in der DB vorhanden sein!!
 
 
 
