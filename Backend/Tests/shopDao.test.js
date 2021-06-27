@@ -4,19 +4,38 @@ const dbOptions = { verbose: console.log };
 const dbFile = path.join(__dirname, "../db/datenbank.sqlite");     
 const dbConnection = new Database(dbFile, dbOptions);
 
-
-
 const ShopDao  = require('../dao/shopDao');
 const { TestWatcher } = require("jest");
 const shopDao = new ShopDao(dbConnection);
-
 
 
 test('ShopDao alle Bücher laden' , () => {
     let result = shopDao.loadAll();
     expect(result).toBeDefined();
     expect(CheckBuchAttribute(result)).toBeTruthy();
-})
+});
+
+
+test('ShopDao Buch Suche' , () => {
+    const suchworte=["halloWelt", "Buch", "suchwort",  "Nix", "Sandmann", "Test", " d3!jd87", "fdsui(DHGGHSHG", "hjsF8dn,2iD18A1"];  
+    for(let i=0; i<suchworte;i++){
+        let result = shopDao.loadSuche(suchworte[i]);
+        expect(result).toBeDefined();
+        expect(CheckBuchAttribute(result)).toBeTruthy();
+    }
+});
+
+
+
+test('ShopDao Preis des teuersten Artikels' , () => {
+    let result = shopDao.loadmaxPreis();
+    expect(result).toBeDefined();
+    expect
+});
+
+
+
+
 
 
 function CheckBuchAttribute(result) {
