@@ -2,6 +2,7 @@ const supertest = require("supertest");
 const app = require("../server");
 
 
+// ---------------- SHOP Tests ------------------------- //
 
 
 describe("Test Shop Route: 'Alle Bücher'", function() {
@@ -20,6 +21,7 @@ describe("Test Shop Route: 'Alle Bücher'", function() {
 });
 
 
+
 describe("Test Shop Route: 'Maxprice'", function() {
   it("Response soll ein JSON mit Preis liefern", function(done) {
     supertest(app)
@@ -31,23 +33,19 @@ describe("Test Shop Route: 'Maxprice'", function() {
         if(err){return done(err);}
         else{return done();}
       });
-
-
   });
 });
 
 
-describe("Test Shop Route: 'Suche'", function() {
 
-  const suchworte=["halloWelt", "Buch", "suchwort",  "Nix", "Sandmann", "Test", " d3!jd87", "fdsui(DHGGHSHG", "hjsF8dn,2iD18A1"]     
+describe("Test Shop Route: 'Suche'", function() {
+  const suchworte=["halloWelt", "Buch", "suchwort",  "Nix", "Sandmann", "Test", " d3!jd87", "fdsui(DHGGHSHG", "hjsF8dn,2iD18A1"];     
 
   for(let i=0; i<suchworte.length;i++){
 
-    let route="/web2/shop/gib/suche/"+suchworte[i]
-
     it("Response soll ein JSON mit eventuellen Treffern beinhalten", function(done) {
       supertest(app)
-        .get(route)
+        .get("/web2/shop/gib/suche/"+suchworte[i])
         .expect(200)                    //expect status 200
         .expect('Content-Type', /json/) //expect to be json 
         .expect(CheckBuchAttribute)
@@ -56,13 +54,8 @@ describe("Test Shop Route: 'Suche'", function() {
           else{return done();}
         });
      });
-
   }
-    
 });
-
-
-
 
 
 
@@ -95,6 +88,43 @@ function CheckBuchAttribute(res) {
   }
 
 }
+
+
+// ---------------- AUTOREN Tests ------------------------- //
+
+describe("Test Autor Route: 'Alle Autoren'", function() {
+  it("Response soll die entsprechenden Kriterien erfüllen", function(done) {
+    supertest(app)
+      .get("/web2/autor/gib/alle")
+      .expect(200)                    //expect status 200
+      .expect('Content-Type', /json/) //expect to be json 
+      .expect(CheckAutorAttribute)     //call function
+      
+      .end(function(err, res){  // Auswertung wenn alle .expect durchlaufen sind
+        if(err){return done(err);}
+        else{return done();}
+      });
+  });
+});
+
+
+
+function CheckAutorAttribute(res) {
+    if(res.body.daten==undefined){ throw new Error("'Daten' Key in JSON Response fehlt!"); }
+    for(let i=0; i<res.body.daten;i++){
+        if(res.body.daten[i].id==undefined){ throw new Error("id in JSON ist nicht definiert!"); }
+        if(res.body.daten[i].name==undefined){ throw new Error("name in JSON ist nicht definiert!"); }
+        if(res.body.daten[i].age==undefined){ throw new Error("age in JSON ist nicht definiert!"); }
+        if(res.body.daten[i].geboren==undefined){ throw new Error("geboren in JSON ist nicht definiert!"); }
+        if(res.body.daten[i].gestorben==undefined){ throw new Error("gestorben in JSON ist nicht definiert!"); }
+        if(res.body.daten[i].publikationen==undefined){ throw new Error("publikationen in JSON ist nicht definiert!"); }
+        if(res.body.daten[i].bildid==undefined){ throw new Error("bildid in JSON ist nicht definiert!"); }
+        if(res.body.daten[i].biografie==undefined){ throw new Error("biografie in JSON ist nicht definiert!"); }
+    }
+}
+
+
+
 
 
 
