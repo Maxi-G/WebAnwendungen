@@ -90,10 +90,10 @@ class ShopDao {
     loadPreis(preis){
     
         
-        var sql = "SELECT * FROM BUCH WHERE Preis <= ?";
+        var sql = "SELECT * FROM BUCH WHERE Preis <= " + parseFloat(preis);
 
         var statement = this._conn.prepare(sql);
-        var result = statement.all(parseFloat(preis));
+        var result = statement.all();
 
         if (helper.isArrayEmpty(result)) 
             return [];
@@ -107,11 +107,13 @@ class ShopDao {
 
 
 
-    loadRat(rat){        
-        var sql = "SELECT * FROM BUCH WHERE CAST(Gesamtbewertung AS INTEGER) == ?" ;
+    loadRat(rat){
+    
+        
+        var sql = "SELECT * FROM BUCH WHERE CAST(Gesamtbewertung AS INTEGER) == " + rat;
 
         var statement = this._conn.prepare(sql);
-        var result = statement.all(rat);
+        var result = statement.all();
 
         if (helper.isArrayEmpty(result)) 
             return [];
@@ -167,33 +169,41 @@ class ShopDao {
             }
 
         }
-
-        var params = [];
         
-
+        
         var sql= "SELECT * FROM BUCH WHERE (" ;
 
+        
         for(var i = 0; i<finalkats.length; i++){
-            sql += " GenreID = '?'";
-            params.push(finalkats[i]);
+
+            sql += " GenreID = '" + finalkats[i] + "'";
+
             if(i < finalkats.length - 1){
+
                 sql += " OR "
+
             }
+
+            
+
+
         }
+
         sql += ") AND ("
 
         
         for(var i = 0; i<finalrats.length; i++){
-            sql += " ROUND(Gesamtbewertung) = ?";
-            params.push(finalrats[i]);
+
+            sql += " ROUND(Gesamtbewertung) = " + finalrats[i];
+
             if(i < finalrats.length - 1){
 
                 sql += " OR "
 
             }
         }
-        sql += ") AND (Preis <= ? )";
-        params.push(parseFloat(preis));
+
+        sql += ") AND (Preis <= " + parseFloat(preis) + ")";
 
 
         
@@ -202,7 +212,7 @@ class ShopDao {
        
 
         var statement = this._conn.prepare(sql);
-        var result = statement.all(params);
+        var result = statement.all();
 
         if (helper.isArrayEmpty(result)) 
             return [];
@@ -219,7 +229,9 @@ class ShopDao {
 
 
 
-    loadRat(para){    
+    loadRat(para){
+
+      
 
         var all = para.split("x");
         
@@ -242,14 +254,12 @@ class ShopDao {
 
         }
         
-        var params = [];
         
         var sql= "SELECT * FROM BUCH WHERE (" ;
 
         for(var i = 0; i<finalrats.length; i++){
 
-            sql += " ROUND(Gesamtbewertung) = ?";
-            params.push(finalrats[i]);
+            sql += " ROUND(Gesamtbewertung) = " + finalrats[i];
 
             if(i < finalrats.length - 1){
 
@@ -260,8 +270,7 @@ class ShopDao {
 
         }
 
-        sql += ") AND (Preis <= ?)"; 
-        params.push(parseFloat(preis));
+        sql += ") AND (Preis <= " + parseFloat(preis) + ")"; 
 
 
         
@@ -269,7 +278,7 @@ class ShopDao {
        
 
         var statement = this._conn.prepare(sql);
-        var result = statement.all(params);
+        var result = statement.all();
 
         if (helper.isArrayEmpty(result)) 
             return [];
@@ -313,12 +322,10 @@ class ShopDao {
         }
          
         var sql= "SELECT * FROM BUCH WHERE (" ;
-        var params = [];
 
         for(var i = 0; i<finalkats.length; i++){
 
-            sql += " GenreID = '?'";
-            params.push(finalkats[i]);
+            sql += " GenreID = '" + finalkats[i] + "'";
 
             if(i < finalkats.length - 1){
 
@@ -327,8 +334,7 @@ class ShopDao {
             }
         }
 
-        sql += ") AND (Preis <= ?)"; 
-        params.push(parseFloat(preis));
+        sql += ") AND (Preis <= " + parseFloat(preis) + ")"; 
 
 
         var statement = this._conn.prepare(sql);
