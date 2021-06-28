@@ -37,7 +37,7 @@ test.each(valide_suchworte)('ShopDao: Suche mit invaliden Suchworten soll ein le
 
 // Attribute aller Bücher im Array überüfen
 function CheckBuchAttribute(result) {
-    if(result.length==0){return false}
+    if(result.length==0){throw new Error("Array ist leer!")}
     for(let i=0; i<result.length;i++){
         if(result[i].anzahlbew==undefined){throw new Error("anzahlbew nicht definiert!")}
         if(result[i].authorid==undefined){throw new Error("authorid nicht definiert!")}
