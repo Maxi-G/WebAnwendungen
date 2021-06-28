@@ -3,11 +3,14 @@ const path = require("path");
 const dbOptions = { verbose: console.log };
 const dbFile = path.join(__dirname, "../db/datenbank.sqlite");     
 const dbConnection = new Database(dbFile, dbOptions);
-
 const ShopDao  = require('../dao/shopDao');
 const shopDao = new ShopDao(dbConnection);
+const invalide_suchworte=["INVSSKCUDE","NFdSsd23sda!S!D","ghdSAdssdds","fd12dssd23sjkf!", "MEGDtFDDDDDDD1S"];
+const valide_suchworte=["Der Sandmann", "Sand", "Der", "Nordpol", "Fräulein"];
 
 
+
+// Teste "Alle Bücher laden" Funktion. --> Ein Array mit mit den Büchern ist zu erwarten
 test('ShopDao alle Bücher laden' , () => {
     let result = shopDao.loadAll();
     expect(result).toBeDefined();
@@ -15,30 +18,26 @@ test('ShopDao alle Bücher laden' , () => {
 });
 
 
-test('ShopDao Buch Suche' , () => {
-    const suchworte=["halloWelt", "Buch", "suchwort",  "Nix", "Sandmann", "Test", " d3!jd87", "fdsui(DHGGHSHG", "hjsF8dn,2iD18A1"];  
-    for(let i=0; i<suchworte;i++){
-        let result = shopDao.loadSuche(suchworte[i]);
-        expect(result).toBeDefined();
-        expect(CheckBuchAttribute(result)).toBeTruthy();
-    }
-});
-
-
-
-test('ShopDao Preis des teuersten Artikels' , () => {
-    let result = shopDao.loadmaxPreis();
+// Teste Suche mit invaliden Suchbegriffen ---> Ein leeres Array ist zu erwarten
+test.each(invalide_suchworte)('ShopDao: Suche mit validem Suchwort soll ein valides Ergebnis liefern' , (invalides_suchwort) => {
+    let result = shopDao.loadSuche(invalides_suchwort);
     expect(result).toBeDefined();
-    expect
+    expect(result).toEqual([]);
+});
+
+
+// Teste Suche mit validen Suchbegriffen ---> Ein Array mit den Büchern ist zu erwarten
+test.each(valide_suchworte)('ShopDao: Suche mit invaliden Suchworten soll ein leeres Ergebnis liefern',(valides_suchwort) => {
+    let result = shopDao.loadSuche(valides_suchwort);
+    expect(result).toBeDefined();
+    expect(CheckBuchAttribute(result)).toBeTruthy();
 });
 
 
 
-
-
-
+// Attribute aller Bücher im Array überüfen
 function CheckBuchAttribute(result) {
-    if(result.length==0){return true} // Es sind keine Bücher in der Datenbank --> True
+    if(result.length==0){return false}
     for(let i=0; i<result.length;i++){
         if(result[i].anzahlbew==undefined){throw new Error("anzahlbew nicht definiert!")}
         if(result[i].authorid==undefined){throw new Error("authorid nicht definiert!")}

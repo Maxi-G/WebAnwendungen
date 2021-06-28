@@ -3,31 +3,39 @@ const path = require("path");
 const dbOptions = { verbose: console.log };
 const dbFile = path.join(__dirname, "../db/datenbank.sqlite");     
 const dbConnection = new Database(dbFile, dbOptions);
-
 const AutorDao  = require('../dao/autorDao');
 const autorDao = new AutorDao(dbConnection);
 
+const valide_suchworte=["Herman","E.T.A", ".T"];  
+const invalide_suchworte=["invalDI!7dgas&", "DjS72hbsaghgt2gCV","hjTD27v!§RE", "dfdbsjdjdb", "dsFfffffffffh", "djas!!hdUd", "SUperDinInvalid!ds"];
 
-test('AutorDao alle Autoren laden' , () => {
+
+test('AutorDao: Alle Autoren laden und ein valides Ergebnis liefern ' , () => {
     let result = autorDao.loadAll();
     expect(result).toBeDefined();
     expect(CheckAutorAttribute(result)).toBeTruthy();
 });
 
 
-test('AutorDao Autor Suche' , () => {
-    const suchworte=["Herman" ,"halloWelt", "Buch", "suchwort",  "Nix", "Sandmann", "Test", " d3!jd87", "fdsui(DHGGHSHG", "hjsF8dn,2iD18A1","E.T.A"];  
-    for(let i=0; i<suchworte;i++){
-        let result = autorDao.loadSuche(suchworte[i]);
-        expect(result).toBeDefined();
-        expect(CheckAutorAttribute(result)).toBeTruthy();
-    }
+test.each(valide_suchworte)('AutorDao: Suche mit validem Suchwort soll ein valides Ergebnis liefern' , (valides_suchwort) => {
+    let result = autorDao.loadSuche(valides_suchwort);
+    expect(result).toBeDefined();
+    expect(CheckAutorAttribute(result)).toBeTruthy();
 });
 
 
+test.each(invalide_suchworte)('AutorDao: Suche mit validem Suchwort soll ein leeres Ergebnis liefern' , (invalides_suchwort) => {
+    let result = autorDao.loadSuche(invalides_suchwort);
+    expect(result).toBeDefined();
+    expect(result).toEqual([]);
+   
+});
 
-function CheckAutorAttribute(result) {
-    if(result.length==0){return true}
+
+// -----------     Funktionen zur Überprüfung der Parameter -------------------
+
+function CheckAutorAttribute(result) {  //
+    if(result.length==0){return false} 
     for(let i=0; i<result.length;i++){
         if(result[i].id==undefined){ throw new Error("id in JSON ist nicht definiert!"); }
         if(result[i].name==undefined){ throw new Error("name in JSON ist nicht definiert!"); }
