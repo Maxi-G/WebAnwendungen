@@ -61,7 +61,7 @@ try {
     //Session management
     const session = require('express-session');
     app.use(session({
-    name:"SESSION", //ist glaub ich nicht relevant
+    name:"SESSION",
     resave:false,
     saveUninitialized:false,
     secret:'E6fs1dk4j3Da2S!nD/sdP!8hd=jf9(3LfeFJ/PSKdf%92f($p12§',     // something safe

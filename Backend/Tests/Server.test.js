@@ -81,7 +81,7 @@ function CheckBuchAttribute(res) {
       if(res.body.daten[i].autor_name==undefined){ throw new Error("autor_name in JSON ist nicht definiert!") }
       if(res.body.daten[i].genre==undefined){ throw new Error("genre in JSON ist nicht definiert!") }
   }
-
+  return true;
 }
 
 

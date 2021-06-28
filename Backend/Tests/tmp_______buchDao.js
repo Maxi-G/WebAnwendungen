@@ -27,8 +27,6 @@ test('BuchDao Buch über ID laden' , () => {
 
 
 
-
-
 function CheckBuchAttribute(result) {
     if(result.length==0){throw new Error("Das Ergebnis ist leer!")} // Es sind keine Bücher in der Datenbank --> False
     for(let i=0; i<result.length;i++){
