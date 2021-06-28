@@ -26,15 +26,11 @@ test('BuchDao Buch über ID laden' , () => {
 });
 
 
-// hier kann man noch Bestseller machen --> der hat mehr zum testen wie z.b Dass es immer genau 3 Bücher sein müssen!
-// In den anderen Tests sollte da false raus kommen wenn DB leer?????
-// Datenbank Regel!  --> Es muss immer mindestens 1 Buch und ein Autor in der DB vorhanden sein!!
-
 
 
 
 function CheckBuchAttribute(result) {
-    if(result.length==0){return true} // Es sind keine Bücher in der Datenbank --> True
+    if(result.length==0){throw new Error("Das Ergebnis ist leer!")} // Es sind keine Bücher in der Datenbank --> False
     for(let i=0; i<result.length;i++){
         if(result[i].anzahlbew==undefined){throw new Error("anzahlbew nicht definiert!")}
         if(result[i].authorid==undefined){throw new Error("authorid nicht definiert!")}

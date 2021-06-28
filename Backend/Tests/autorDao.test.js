@@ -35,16 +35,16 @@ test.each(invalide_suchworte)('AutorDao: Suche mit validem Suchwort soll ein lee
 // -----------     Funktionen zur Überprüfung der Parameter -------------------
 
 function CheckAutorAttribute(result) {  //
-    if(result.length==0){return false} 
+    if(result.length==0){throw new Error("Das Ergebnis ist leer!");} 
     for(let i=0; i<result.length;i++){
-        if(result[i].id==undefined){ throw new Error("id in JSON ist nicht definiert!"); }
-        if(result[i].name==undefined){ throw new Error("name in JSON ist nicht definiert!"); }
-        if(result[i].age==undefined){ throw new Error("age in JSON ist nicht definiert!"); }
-        if(result[i].geboren==undefined){ throw new Error("geboren in JSON ist nicht definiert!"); }
-        if(result[i].gestorben==undefined){ throw new Error("gestorben in JSON ist nicht definiert!"); }
-        if(result[i].publikationen==undefined){ throw new Error("publikationen in JSON ist nicht definiert!"); }
-        if(result[i].bildid==undefined){ throw new Error("bildid in JSON ist nicht definiert!"); }
-        if(result[i].biografie==undefined){ throw new Error("biografie in JSON ist nicht definiert!"); }
+        if(result[i].id==undefined){ throw new Error("id ist nicht definiert!"); }
+        if(result[i].name==undefined){ throw new Error("name ist nicht definiert!"); }
+        if(result[i].age==undefined){ throw new Error("age ist nicht definiert!"); }
+        if(result[i].geboren==undefined){ throw new Error("geboren ist nicht definiert!"); }
+        if(result[i].gestorben==undefined){ throw new Error("gestorben ist nicht definiert!"); }
+        if(result[i].publikationen==undefined){ throw new Error("publikationen ist nicht definiert!"); }
+        if(result[i].bildid==undefined){ throw new Error("bildid ist nicht definiert!"); }
+        if(result[i].biografie==undefined){ throw new Error("biografie ist nicht definiert!"); }
     }
     return true;
 }
