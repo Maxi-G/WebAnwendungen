@@ -64,32 +64,42 @@ describe("Test Shop Route: 'Suche mit invaliden Suchbegriffen'", function() {
 
 
 function CheckBuchAttribute(res) {
-  if(res.body.daten==undefined){ throw new Error("'Daten' Attribut in JSON Response fehlt!"); }
-  if(res.body.daten.length<1){throw new Error("'Daten' Attribut in JSON Response ist leer!")}
+  expect(res.body.daten).toBeDefined();
+  expect(res.body.daten.length).toBeGreaterThanOrEqual(1);
+
   for(let i=0; i<res.body.daten.length;i++){
-      if(res.body.daten[i].id==undefined){ throw new Error("id in JSON ist nicht definiert!") }
-      if(res.body.daten[i].titel==undefined){ throw new Error("titel in JSON ist nicht definiert!") }
-      if(res.body.daten[i].kurzbeschreibung==undefined){ throw new Error("kurzbeschreibung in JSON ist nicht definiert!") }
-      if(res.body.daten[i].isbn==undefined){ throw new Error("isbn in JSON ist nicht definiert!") }
-      if(res.body.daten[i].preis==undefined){ throw new Error("preis in JSON ist nicht definiert!") }
-      if(res.body.daten[i].authorid==undefined){ throw new Error("authorid in JSON ist nicht definiert!") }
-      if(res.body.daten[i].anzahlbew==undefined){ throw new Error("anzahlbew in JSON ist nicht definiert!") }      
-      if(res.body.daten[i].genreid==undefined){ throw new Error("genreid in JSON ist nicht definiert!") }
-      if(res.body.daten[i].bildid==undefined){ throw new Error("bildid in JSON ist nicht definiert!") }
-      if(res.body.daten[i].mehrwertsteuerid==undefined){ throw new Error("mehrwertsteuerid in JSON ist nicht definiert!") }
-      if(res.body.daten[i].gesamtbewertung==undefined){ throw new Error("gesamtbewertung in JSON ist nicht definiert!") }
-      if(res.body.daten[i].bildpfad==undefined){ throw new Error("bildpfad in JSON ist nicht definiert!") }
-      if(res.body.daten[i].autor_name==undefined){ throw new Error("autor_name in JSON ist nicht definiert!") }
-      if(res.body.daten[i].genre==undefined){ throw new Error("genre in JSON ist nicht definiert!") }
+        expect(res.body.daten[i].id).toBeDefined();
+        expect(res.body.daten[i].titel).toBeDefined();
+        expect(res.body.daten[i].kurzbeschreibung).toBeDefined();
+        expect(res.body.daten[i].isbn).toBeDefined();
+        expect(res.body.daten[i].preis).toBeDefined();
+        expect(res.body.daten[i].authorid).toBeDefined();
+        expect(res.body.daten[i].anzahlbew).toBeDefined();
+        expect(res.body.daten[i].genreid).toBeDefined();
+        expect(res.body.daten[i].bildid).toBeDefined();
+        expect(res.body.daten[i].mehrwertsteuerid).toBeDefined();
+        expect(res.body.daten[i].gesamtbewertung).toBeDefined();
+        expect(res.body.daten[i].bildpfad).toBeDefined();
+        expect(res.body.daten[i].autor_name).toBeDefined();
+        expect(res.body.daten[i].genre).toBeDefined();
   }
-  return true;
 }
+
 
 
 function CheckDatenContent(res) {
-    if(res.body.daten==undefined){ throw new Error("'Daten' Attribut in JSON Response fehlt!"); }
-    if(res.body.daten.length!=0){throw new Error("'Daten' Attribut in JSON Response ist nicht leer!")}
+    expect(res.body.daten).toBeDefined();
+    expect(res.body.daten.length).toBe(0);
 }
+
+
+
+
+
+
+
+
+
 
 
 // ---------------- AUTOREN Service Tests ------------------------- //
@@ -112,16 +122,16 @@ describe("Test Autor Route: 'Alle Autoren'", function() {
 
 
 function CheckAutorAttribute(res) {
-    if(res.body.daten==undefined){ throw new Error("'Daten' Key in JSON Response fehlt!"); }
+    expect(res.body.daten).toBeDefined();
     for(let i=0; i<res.body.daten;i++){
-        if(res.body.daten[i].id==undefined){ throw new Error("id in JSON ist nicht definiert!"); }
-        if(res.body.daten[i].name==undefined){ throw new Error("name in JSON ist nicht definiert!"); }
-        if(res.body.daten[i].age==undefined){ throw new Error("age in JSON ist nicht definiert!"); }
-        if(res.body.daten[i].geboren==undefined){ throw new Error("geboren in JSON ist nicht definiert!"); }
-        if(res.body.daten[i].gestorben==undefined){ throw new Error("gestorben in JSON ist nicht definiert!"); }
-        if(res.body.daten[i].publikationen==undefined){ throw new Error("publikationen in JSON ist nicht definiert!"); }
-        if(res.body.daten[i].bildid==undefined){ throw new Error("bildid in JSON ist nicht definiert!"); }
-        if(res.body.daten[i].biografie==undefined){ throw new Error("biografie in JSON ist nicht definiert!"); }
+       expect(res.body.daten[i].id).toBeDefined();  
+       expect(res.body.daten[i].name).toBeDefined();  
+       expect(res.body.daten[i].age).toBeDefined();  
+       expect(res.body.daten[i].geboren).toBeDefined();  
+       expect(res.body.daten[i].gestorbe).toBeDefined();  
+       expect(res.body.daten[i].publikationen).toBeDefined();  
+       expect(res.body.daten[i].bildid).toBeDefined();  
+       expect(res.body.daten[i].biografie).toBeDefined();  
     }
 }
 
