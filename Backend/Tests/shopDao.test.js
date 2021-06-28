@@ -32,7 +32,7 @@ test.each(valide_suchworte)('ShopDao: Suche mit validem Suchworten soll ein voll
     expect(CheckBuchAttribute(valid_such_result))
 });
 
-
+//
 
 // Attribute aller Bücher im Array überüfen
 function CheckBuchAttribute(result) {
