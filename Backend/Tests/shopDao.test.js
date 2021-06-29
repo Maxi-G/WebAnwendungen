@@ -40,17 +40,29 @@ function CheckBuchAttribute(result) {
 
     for(let i=0; i<result.length;i++){
         expect(result[i].anzahlbew).toBeDefined();
+        expect(typeof result[i].anzahlbew).toBe('number');
         expect(result[i].authorid).toBeDefined();
+        expect(typeof result[i].authorid).toBe('number');
         expect(result[i].autor_name).toBeDefined();
+        expect(typeof result[i].autor_name).toBe('string');
         expect(result[i].bildid).toBeDefined();
+        expect(typeof result[i].bildid).toBe('number');
         expect(result[i].bildpfad).toBeDefined();
+        expect(typeof result[i].bildpfad).toBe('string');
         expect(result[i].genreid).toBeDefined();
+        expect(typeof result[i].genreid).toBe('number');
         expect(result[i].gesamtbewertung).toBeDefined();
+        expect(typeof result[i].gesamtbewertung).toBe('number');
         expect(result[i].id).toBeDefined();
+        expect(typeof result[i].id).toBe('number');
         expect(result[i].isbn).toBeDefined();
+        expect(typeof result[i].isbn).toBe('string');
         expect(result[i].kurzbeschreibung).toBeDefined();
+        expect(typeof result[i].kurzbeschreibung).toBe('string');
         expect(result[i].preis).toBeDefined();
+        expect(typeof result[i].preis).toBe('number');
         expect(result[i].titel).toBeDefined();
+        expect(typeof result[i].titel).toBe('string');
     }
 }
 
