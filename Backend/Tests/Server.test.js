@@ -32,6 +32,7 @@ describe("Test Shop Route: 'Suche mit validen Suchbegriffen'", function() {
         .expect(200)                    //expect status 200
         .expect('Content-Type', /json/) //expect to be json 
         .expect(CheckBuchAttribute)
+        
         .end(function(err){        // Auswertung wenn alle .expect durchlaufen sind
           if(err){return done(err);}
           else{return done();}
